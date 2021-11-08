@@ -18,6 +18,16 @@ end
     @this_week_book = @books.created_this_week
     @last_week_book = @books.created_lasy_week
     @week_ratio = @this_week_book.count / @yesterday_book.count.to_f
+
+    @book_array = []
+
+    for i in 0..6 do
+      if i == 6
+        @book_array.push(@books.where(created_at: Time.zone.now.all_day).count)
+      else
+      @book_array.push(@books.where(created_at: (6-i).day.ago.all_day).count)
+      end
+    end
   end
 
   def index
