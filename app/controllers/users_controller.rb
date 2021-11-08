@@ -12,6 +12,12 @@ end
     @user = User.find(params[:id])
     @books = @user.books
     @book = Book.new
+    @today_book = @books.created_today
+    @yesterday_book = @books.created_yesterday
+    @day_ratio = @today_book.count / @yesterday_book.count.to_f
+    @this_week_book = @books.created_this_week
+    @last_week_book = @books.created_lasy_week
+    @week_ratio = @this_week_book.count / @yesterday_book.count.to_f
   end
 
   def index
