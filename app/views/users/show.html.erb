@@ -10,8 +10,8 @@
       <h2>Books</h2>
       <%= render 'books/index',books: @books %>
       <h2>投稿数の前日比・前週比</h2>
-      <div class="table_width">
-        <table class="table-bordered">
+
+        <table class="table">
           <thead>
             <tr>
               <th>今日の投稿数</th>
@@ -33,7 +33,30 @@
             </tr>
           </tbody>
         </table>
-      </div>
+      
+        <table class="table">
+          <thead>
+            <tr>
+              <th>今週の投稿数</th>
+              <th>先週の投稿数</th>
+               <th>比</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= @this_week_book.count %></td>
+              <td><%= @last_week_book.count %></td>
+              <td>
+                <% if @last_week_book.count == 0 %>
+                先週の投稿はありません
+                <% else %>
+                <%= (@w_ratio * 100).round %>
+                <% end %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      
     </div>
   </div>
 </div>
